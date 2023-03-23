@@ -15,37 +15,37 @@ dependencies:
   rich_clipboard_macos:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_macos/
   rich_clipboard_windows:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_windows/
   rich_clipboard_linux:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_linux/
   rich_clipboard_web:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_web/
   rich_clipboard_android:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_android/
   rich_clipboard_ios:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_ios/
   rich_clipboard_platform_interface:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_platform_interface/
 dev_dependencies:
   flutter_test:

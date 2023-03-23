@@ -15,7 +15,7 @@ dependencies:
   rich_clipboard_platform_interface:
     git:
       url: https://github.com/edityomurti/rich_clipboard.git
-      ref: custom_data
+      ref: feature/custom_data
       path: rich_clipboard_platform_interface
 
 dev_dependencies:
