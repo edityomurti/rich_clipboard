@@ -13,7 +13,10 @@ dependencies:
   flutter:
     sdk: flutter
   rich_clipboard_platform_interface:
-    path: ../rich_clipboard_platform_interface
+    git:
+      url: https://github.com/edityomurti/rich_clipboard.git
+      ref: custom_data
+      path: rich_clipboard_platform_interface
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
