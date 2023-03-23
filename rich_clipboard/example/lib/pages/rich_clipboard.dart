@@ -26,6 +26,11 @@ class _RichClipboardPageState extends State<RichClipboardPage> {
     _availableController = TextEditingController();
     _textContentsController = TextEditingController();
     _htmlContentsController = TextEditingController();
+    RichClipboard.initOnPasteWeb((data) {
+      print('LL:: onPaste from example | plain: "${data.text}"');
+      print(
+          'LL:: onPaste from example | delta: "${data.customData?['text/_sym-delta']}"');
+    });
   }
 
   @override
@@ -124,9 +129,11 @@ class _RichClipboardPageState extends State<RichClipboardPage> {
                   final plainText = _textContentsController.text;
                   final htmlText = _htmlContentsController.text;
                   final data = RichClipboardData(
-                    text: plainText.isEmpty ? null : plainText,
-                    html: htmlText.isEmpty ? null : htmlText,
-                  );
+                      text: plainText.isEmpty ? null : plainText,
+                      html: htmlText.isEmpty ? null : htmlText,
+                      customData: const {
+                        'text/_sym-delta': '["insert": "CUAKKKKSSS"]'
+                      });
                   await RichClipboard.setData(data);
                   await _refreshTypes();
                 },

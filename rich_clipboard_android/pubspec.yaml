@@ -3,6 +3,7 @@ description: Android implementation of the rich_clipboard plugin
 homepage: https://github.com/BringingFire/rich_clipboard/tree/dev/rich_clipboard_android
 repository: https://github.com/BringingFire/rich_clipboard/tree/dev/rich_clipboard_android
 version: 1.0.0
+publish_to: none
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -11,7 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rich_clipboard_platform_interface: ^1.0.0
+  rich_clipboard_platform_interface:
+    path: ../rich_clipboard_platform_interface
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:

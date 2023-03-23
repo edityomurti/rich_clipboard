@@ -1,5 +1,7 @@
 import 'dart:html';
+import 'dart:js';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:js/js.dart';
 import 'package:js/js_util.dart';
@@ -31,6 +33,27 @@ class RichClipboardWeb extends RichClipboardPlatform {
       return;
     }
     RichClipboardPlatform.instance = RichClipboardWeb();
+  }
+
+  @override
+  void initOnPasteWeb(void Function(RichClipboardData data) onPaste) {
+    window.document.onPaste.listen((e) {
+      try {
+        print('LL:: _ClipboardProcessStatus | onPaste.listen');
+        e.preventDefault();
+        final datas = e.clipboardData;
+        final mapData = <String, String?>{};
+
+        for (final type in datas?.types ?? <String>[]) {
+          print('LL:: type: $type');
+          mapData.addEntries({type: datas?.getData(type)}.entries);
+        }
+
+        onPaste(RichClipboardData.fromMap(mapData));
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+    });
   }
 
   @override
@@ -81,30 +104,20 @@ class RichClipboardWeb extends RichClipboardPlatform {
 
   @override
   Future<void> setData(RichClipboardData data) async {
-    final clipboard = window.navigator.clipboard as _Clipboard?;
-    if (clipboard == null) {
-      return;
-    }
+    window.document.onCopy.listen((e) {
+      e.preventDefault();
 
-    final dataMap = Map.fromEntries(
-      data.toMap().entries.where((entry) => entry.value != null).map(
-            (entry) => MapEntry(
-              entry.key,
-              // Wrapping the string in a list here satisfies the Blob
-              // constructor and works just fine. If something in Dart or the
-              // web APIs change to require a list of individual characters in
-              // the future, use the .characters getter from the characters
-              // package to safely split the string into unicode grapheme
-              // clusters.
-              Blob([entry.value!], entry.key),
-            ),
-          ),
-    );
+      for (final item in data.toMap().entries) {
+        final key = item.key;
+        final value = item.value;
 
-    final items = <_ClipboardItem>[
-      if (dataMap.isNotEmpty) _ClipboardItem(jsify(dataMap))
-    ];
-    await clipboard.write(items);
+        if (value != null) {
+          e.clipboardData!.setData(key, value);
+        }
+      }
+      e.clipboardData;
+    });
+    window.document.execCommand('copy');
   }
 }
 

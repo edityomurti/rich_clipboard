@@ -45,4 +45,12 @@ abstract class RichClipboardPlatform extends PlatformInterface {
   /// available in the system clipboard then the future will resolve to an empty
   /// list.
   Future<List<String>> getAvailableTypes();
+
+  // void Function(RichClipboardData data)? _onPaste;
+
+  // set onPaste(void Function(RichClipboardData data) function) {
+  //   _onPaste = function;
+  // }
+
+  void initOnPasteWeb(void Function(RichClipboardData data) onPaste) {}
 }

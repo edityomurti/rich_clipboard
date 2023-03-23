@@ -37,4 +37,8 @@ class RichClipboard {
   /// To clear the clipboard pass an empty [RichClipboardData].
   static Future<void> setData(RichClipboardData data) async =>
       _platform.setData(data);
+
+  static void initOnPasteWeb(void Function(RichClipboardData data) onPaste) {
+    _platform.initOnPasteWeb(onPaste);
+  }
 }
