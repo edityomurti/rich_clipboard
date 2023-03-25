@@ -39,13 +39,11 @@ class RichClipboardWeb extends RichClipboardPlatform {
   void initOnPasteWeb(void Function(RichClipboardData data) onPaste) {
     window.document.onPaste.listen((e) {
       try {
-        print('LL:: _ClipboardProcessStatus | onPaste.listen');
         e.preventDefault();
         final datas = e.clipboardData;
         final mapData = <String, String?>{};
 
         for (final type in datas?.types ?? <String>[]) {
-          print('LL:: type: $type');
           mapData.addEntries({type: datas?.getData(type)}.entries);
         }
 
